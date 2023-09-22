@@ -16,17 +16,17 @@ if (formData) {
 function saveFormData(fieldName, fieldValue) {
     const userForm = localStorage.getItem("feedback-form-state");
     const obj = !userForm ? {} : JSON.parse(userForm);
-
     obj[fieldName] = fieldValue;
     localStorage.setItem("feedback-form-state", JSON.stringify(obj));
-    console.log(obj);
 }
 
 submitButton.addEventListener("click", (event) => { 
     event.preventDefault();
+    const userForm = localStorage.getItem("feedback-form-state");
     localStorage.removeItem("feedback-form-state");
     inputContent.value = "";
     textareaContent.value = "";
+    console.log(JSON.parse(userForm));
 });
 
 inputContent.oninput = throttle((data) => {
